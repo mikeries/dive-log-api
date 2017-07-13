@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
  
     session[:user_id] = @user.id
  
-    render 'welcome/home'
+    redirect_to 'http://localhost:3001?token="yay"'
   end
 
   def authenticate

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate
+
   def create
     @user = User.find_or_create_by(uid: auth['uid']) do |u|
       u.name = auth['info']['name']
@@ -6,9 +8,12 @@ class SessionsController < ApplicationController
       u.image = auth['info']['image']
     end
  
-    session[:user_id] = @user.id
- 
-    redirect_to 'http://localhost:3001?token="yay"'
+    if @user
+      jwt = Auth.issue({user: user.id})
+      redirect_to `http://localhost:3001?token=#{jwt}`
+    end
+
+    ## TODO: exit silently
   end
 
   def authenticate

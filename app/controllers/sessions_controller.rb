@@ -10,6 +10,10 @@ class SessionsController < ApplicationController
  
     render 'welcome/home'
   end
+
+  def authenticate
+    redirect_to '/auth/facebook'
+  end
  
   private
  

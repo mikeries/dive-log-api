@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
   end
 
   def authenticate
-    redirect_to '/auth/facebook' if params[:type]=='facebook'
-    redirect_to '/auth/github' if params[:type]=='github'
+    redirect_to '/auth/facebook' if params[:type] == 'facebook'
+    redirect_to '/auth/github' if params[:type] == 'github'
   end
  
   private

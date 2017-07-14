@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
  
     if user
       jwt = Auth.create_token({user: user.uid})
-      redirect_to "http://localhost:3001?token=" + jwt
+      render  json: {token: jwt }
     end
 
     ## TODO: exit silently

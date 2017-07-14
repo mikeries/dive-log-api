@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713154137) do
+ActiveRecord::Schema.define(version: 20170714213009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dives", force: :cascade do |t|
+    t.integer "diver_id"
+    t.integer "location_id"
+    t.string "datetime"
+    t.integer "duration"
+    t.integer "ballast"
+    t.integer "max_depth"
+    t.integer "starting_pressure"
+    t.integer "final_pressure"
+    t.string "comments"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "category"
+    t.string "description"
+    t.string "name"
+    t.string "city"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

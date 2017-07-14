@@ -134,7 +134,9 @@ subjects for any photographer. At about 60 ft you will start to find the azure
 vase sponges and large barrel sponges starting to appear. Be sure to check for 
 juvenile reef fish and the banded coral shrimp that like to take shelter here. 
 On the top of the wall look between the large gorgonians for trumpet fish and 
-black groupers while turtles and French angelfish can be found on the reef crest. As you swim along the wall be sure to keep a look out in the blue water for sharks, manta rays and other large fish.
+black groupers while turtles and French angelfish can be found on the reef crest. 
+As you swim along the wall be sure to keep a look out in the blue water for sharks, 
+manta rays and other large fish.
   DESC
 })
 

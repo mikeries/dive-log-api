@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback' => 'sessions#create'
   get '/auth/github/callback' => 'sessions#create'
   
-  post '/authenticate' => 'sessions#authenticate'
+  get '/authenticate' => 'sessions#authenticate'
 end

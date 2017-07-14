@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170714213009) do
   enable_extension "plpgsql"
 
   create_table "dives", force: :cascade do |t|
-    t.integer "diver_id"
+    t.integer "user_id"
     t.integer "location_id"
     t.string "datetime"
     t.integer "duration"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170714213009) do
   end
 
   create_table "locations", force: :cascade do |t|
+    t.integer "user_id"
     t.string "category"
     t.string "description"
     t.string "name"

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get '/user/current_user' => 'sessions#get_current_user'
 
   resources :dives, only: [:index]
+  resources :locations, only: [:index]
 end

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     end
  
     if user
-      jwt = Auth.create_token({user: user.uid})
+      jwt = Auth.encode_uid(user.uid)
       redirect_to 'http://localhost:3001?token=' + jwt
     end
 
@@ -21,6 +21,10 @@ class SessionsController < ApplicationController
   def authenticate
     redirect_to '/auth/facebook' if params[:type] == 'facebook'
     redirect_to '/auth/github' if params[:type] == 'github'
+  end
+
+  def get_current_user
+    render json: current_user
   end
  
   private

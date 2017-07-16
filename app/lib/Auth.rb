@@ -1,11 +1,12 @@
 
 class Auth
-  def self.create_token(user_id)
+  def self.encode_uid(user_id)
     payload = {user_id: user_id}
-    JWT.encode(payload, ENV['AUTH_SECRET'], ENV['AUTH_ALGORITHM'])
+    JWT.encode payload, ENV['AUTH_SECRET'], 'HS256'
   end
 
-  def self.decode_token(token)
-    JWT.decode(token, ENV['AUTH_SECRET'], true, {algorithm: ENV['AUTH_ALGORITHM']})
+  def self.decode_uid(token)
+    payload = JWT.decode token, ENV['AUTH_SECRET'], true, { :algorithm => 'HS256' }
+    payload[0]['user_id']
   end
-end 
+end

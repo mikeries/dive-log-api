@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/auth/github/callback' => 'sessions#create'
   
   get '/authenticate' => 'sessions#authenticate'
+  get '/user/current_user' => 'sessions#get_current_user'
 end

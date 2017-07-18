@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   get '/authenticate' => 'sessions#authenticate'
   get '/user/current_user' => 'sessions#get_current_user'
 
-  resources :dives, only: [:index, :update]
+  resources :dives, only: [:index, :create, :update, :destroy]
   resources :locations, only: [:index]
 end

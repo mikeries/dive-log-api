@@ -2,12 +2,23 @@
 class DivesController < ApplicationController
 
   def index
-    render json: User.first.dives
+    render json: current_user.dives
+  end
+
+  def create
+    dive = current_user.dives.build(dive_params)
+    dive.save
+    render json: dive
   end
 
   def update
-    dive = User.first.dives.find(params[:id])
+    dive = current_user.dives.find(params[:id])
     dive.update(dive_params)
+    render json: {}
+  end
+
+  def destroy
+    current_user.dives.delete(params[:id])
     render json: {}
   end
 
@@ -15,7 +26,6 @@ class DivesController < ApplicationController
 
   def dive_params
     params.require(:dive).permit(
-      :id, 
       :datetime, 
       :location_id, 
       :duration, 

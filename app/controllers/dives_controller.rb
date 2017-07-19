@@ -2,7 +2,7 @@
 class DivesController < ApplicationController
 
   def index
-    render json: current_user.dives
+    render json: current_user.dives.order(:date, :time)
   end
 
   def create
@@ -26,7 +26,8 @@ class DivesController < ApplicationController
 
   def dive_params
     params.require(:dive).permit(
-      :datetime, 
+      :date,
+      :time, 
       :location_id, 
       :duration, 
       :ballast,

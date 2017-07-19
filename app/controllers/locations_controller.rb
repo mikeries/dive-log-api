@@ -1,8 +1,8 @@
 class LocationsController < ApplicationController
-  skip_before_action :authenticate
+  :authenticate
 
   def index
-    render json: User.first.locations
+    render json: User.first.locations.order(:name)
   end
 
 end

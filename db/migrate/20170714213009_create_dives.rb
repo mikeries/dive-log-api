@@ -3,7 +3,8 @@ class CreateDives < ActiveRecord::Migration[5.1]
     create_table :dives do |t|
       t.integer :user_id
       t.integer :location_id
-      t.string :datetime
+      t.string :date
+      t.string :time
       t.integer :duration
       t.integer :ballast
       t.integer :max_depth

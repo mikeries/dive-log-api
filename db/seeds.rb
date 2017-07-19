@@ -143,7 +143,8 @@ manta rays and other large fish.
 guest.dives.build({
   comments: "My first time in Belize.  Loved it!", 
   location: aquarium, 
-  datetime: "2/10/2013",
+  date: "2/10/2013",
+  time: "10:03",
   ballast: 8,
   duration: 66,
   max_depth: 40,
@@ -154,7 +155,8 @@ guest.dives.build({
 guest.dives.build({
   comments: "I was nervious about the depth, so I took it easy.", 
   location: blue_hole, 
-  datetime: "2/12/2013",
+  date: "2/12/2013",
+  time: "7:00",
   ballast: 8,
   duration: 57,
   max_depth: 100,
@@ -165,7 +167,8 @@ guest.dives.build({
 guest.dives.build({
   comments: "Had some problems with my ears.  Perfect visibility.  Saw several turtles and a shark.",
   location: molokini, 
-  datetime: "6/6/2014",
+  date: "6/6/2014",
+  time: "11:30",
   ballast: 8,
   duration: 54,
   max_depth: 59,

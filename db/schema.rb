@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 20170714213009) do
   create_table "dives", force: :cascade do |t|
     t.integer "user_id"
     t.integer "location_id"
-    t.string "datetime"
+    t.string "date"
+    t.string "time"
     t.integer "duration"
     t.integer "ballast"
     t.integer "max_depth"

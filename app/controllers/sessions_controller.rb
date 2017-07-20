@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
  
     if user
       jwt = Auth.encode_uid(user.uid)
-      redirect_to 'http://localhost:3001?token=' + jwt
+      redirect_to "#{ENV['DIVE_LOG_CLIENT_URL']}?token=#{jwt}"
     end
 
     ## TODO: exit silently

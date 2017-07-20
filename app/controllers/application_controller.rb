@@ -6,12 +6,11 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
+    return @current_user if @current_user
     if auth_present?
       uid = Auth.decode_uid(read_token_from_request)
       user = User.find_by({uid: uid})
-      if user
-        @current_user ||= user
-      end
+      return user if user
     end
   end
 

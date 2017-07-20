@@ -9,12 +9,11 @@ class SessionsController < ApplicationController
       u.email = auth['info']['email']
       u.image = auth['info']['image']
     end
- 
+
     if user
       jwt = Auth.encode_uid(user.uid)
-      redirect_to "#{ENV['DIVE_LOG_CLIENT_URL']}?token=#{jwt}"
+      redirect_to(ENV['DIVE_LOG_CLIENT_URL'] + "?token=#{jwt}")
     end
-
     ## TODO: exit silently
   end
 

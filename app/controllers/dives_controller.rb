@@ -7,14 +7,23 @@ class DivesController < ApplicationController
 
   def create
     dive = current_user.dives.build(dive_params)
-    dive.save
-    render json: dive
+    if dive.save
+      render json: dive
+    else 
+      render json: {errors: dive.errors}, status: 201
+    end
+
   end
 
   def update
     dive = current_user.dives.find(params[:id])
-    dive.update(dive_params)
-    render json: {}
+
+    if dive.valid?
+      dive.update(dive_params)
+      render json: {}
+    else
+      render json: {errors: dive.errors}, status: 201
+    end
   end
 
   def destroy

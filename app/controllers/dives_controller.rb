@@ -10,7 +10,7 @@ class DivesController < ApplicationController
     if dive.save
       render json: dive
     else 
-      render json: {errors: dive.errors}, status: 201
+      render json: {errors: dive.errors}, status: 422
     end
 
   end
@@ -22,7 +22,7 @@ class DivesController < ApplicationController
       dive.update(dive_params)
       render json: {}
     else
-      render json: {errors: dive.errors}, status: 201
+      render json: {errors: dive.errors}, status: 422
     end
   end
 

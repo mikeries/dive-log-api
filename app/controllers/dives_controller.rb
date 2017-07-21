@@ -18,8 +18,7 @@ class DivesController < ApplicationController
   def update
     dive = current_user.dives.find(params[:id])
 
-    if dive.valid?
-      dive.update(dive_params)
+    if dive.update(dive_params)
       render json: {}
     else
       render json: {errors: dive.errors}, status: 422

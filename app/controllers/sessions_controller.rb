@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
 
   def get_current_user
     render json: current_user
+    ##render json: { errors: {name: 'Error message One', email: 'another error'} }, status: 201
   end
  
   private

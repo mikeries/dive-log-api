@@ -9,8 +9,8 @@ class ApplicationController < ActionController::API
     return @current_user if @current_user
     if auth_present?
       uid = Auth.decode_uid(read_token_from_request)
-      user = User.find_by({uid: uid})
-      return user if user
+      @current_user = User.find_by({uid: uid})
+      return @current_user if @current_user
     end
   end
 

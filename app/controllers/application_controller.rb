@@ -14,6 +14,13 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def facebook_token_valid?(token)
+    response = Faraday.get("https://graph.facebook.com/app?access_token=#{token}")
+    data = JSON.parse(response.body)
+    return true if data['id'] == ENV['FACEBOOK_CLIENT_APP_ID']
+    false
+  end
+
   def authenticate
     render json: { error: 'unauthorized' }, status: 401 unless logged_in?
   end

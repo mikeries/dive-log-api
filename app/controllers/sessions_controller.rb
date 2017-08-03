@@ -17,6 +17,12 @@ class SessionsController < ApplicationController
     ## TODO: exit silently
   end
 
+  def facebook_user
+    return if !facebook_token_valid? params[:token]
+
+    
+  end
+
   def authenticate
     redirect_to '/auth/facebook' if params[:type] == 'facebook'
     redirect_to '/auth/github' if params[:type] == 'github'

@@ -19,7 +19,10 @@ class SessionsController < ApplicationController
 
   def facebook_user
     token = params[:token]
-    return unless facebook_token_valid?(token)
+    
+    if !facebook_token_valid?(token) do
+      render json: {errors: 'Invalid token from Facebook'}, status: 422
+    end
 
     uid = params[:uid]
     response = Faraday.get("https://graph.facebook.com/#{uid}?access_token=#{token}&fields=email, name ")

@@ -19,14 +19,20 @@ class SessionsController < ApplicationController
 
   def facebook_user
     token = params[:token]
-    uid = params[:uid]
     return unless facebook_token_valid?(token)
+
+    uid = params[:uid]
     response = Faraday.get("https://graph.facebook.com/#{uid}?access_token=#{token}=email, name ")
     auth = JSON.parse(response.body)
 
     user = User.find_or_create_by(uid: uid) do |u|
       u.name = auth['name']
       u.email = auth['email']
+    end
+
+    if user
+      jwt = Auth.encode_uid(user.uid)
+      render json: { jwt: jwt, user: user }
     end
   end
 

@@ -15,11 +15,9 @@ class ApplicationController < ActionController::API
   end
 
   def facebook_token_valid?(token)
-    puts 'checking with Facebook'
     response = Faraday.get("https://graph.facebook.com/app?access_token=#{token}")
     data = JSON.parse(response.body)
 
-    puts 'AppID:' + data['id']
     return true if data['id'] == ENV['FACEBOOK_CLIENT_APP_ID']
     false
   end

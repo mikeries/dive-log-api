@@ -18,35 +18,24 @@ class SessionsController < ApplicationController
     ## TODO: exit silently
   end
 
+## TODO: Error error checking
   def facebook_user
 
-    puts 'Starting validation.'
     tokenData = AuthToken.new(token_params)
     token = tokenData.token;
-
-    puts 'Token:' + token
     return unless facebook_token_valid?(token)
-
-    puts 'valid token'
 
     uid = tokenData.uid
     response = Faraday.get("https://graph.facebook.com/#{uid}?access_token=#{token}&fields=email, name ")
     authorization = JSON.parse(response.body)
 
-    puts "User data recieved:"+ authorization['name']
-
-    @user = User.find_or_create_by(uid: uid) do |u|
+    user = User.find_or_create_by(uid: uid) do |u|
       u.name = authorization['name']
       u.email = authorization['email']
     end
 
-    puts "User valid? #{@user.valid?}"
-
-    @jwt = Auth.encode_uid(uid)
-
-    puts "JWT: #{@jwt}"
-    puts "User: #{@user.name}"
-    render json: { jwt: @jwt, user: @user }
+    jwt = Auth.encode_uid(uid)
+    render json: { jwt: jwt, user: user }
 
   end
 

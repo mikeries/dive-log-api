@@ -50,20 +50,10 @@ class SessionsController < ApplicationController
  
   private
 
-<<<<<<< HEAD
-  def session_params
-     params.permit(
-      :token,
-      :uid
-    )
-  end
-
-=======
   def token_params
     params.require(:data).permit(:token, :uid)
   end
  
->>>>>>> development
   def auth
     request.env['omniauth.auth']
   end

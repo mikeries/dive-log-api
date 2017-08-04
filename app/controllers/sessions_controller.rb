@@ -1,4 +1,5 @@
 require 'Auth'
+require 'auth_token'
 
 class SessionsController < ApplicationController
   skip_before_action :authenticate
@@ -18,16 +19,24 @@ class SessionsController < ApplicationController
   end
 
   def facebook_user
+<<<<<<< HEAD
     token = session_params[:token]
     return unless facebook_token_valid?(token)
 
     uid = session_params[:uid]
+=======
+    tokenData = AuthToken.new(token_params)
+    token = tokenData.token;
+    return unless facebook_token_valid?(token)
+
+    uid = tokenData.uid
+>>>>>>> development
     response = Faraday.get("https://graph.facebook.com/#{uid}?access_token=#{token}&fields=email, name ")
-    auth = JSON.parse(response.body)
+    authorization = JSON.parse(response.body)
 
     user = User.find_or_create_by(uid: uid) do |u|
-      u.name = auth['name']
-      u.email = auth['email']
+      u.name = authorization['name']
+      u.email = authorization['email']
     end
 
     if user
@@ -48,6 +57,7 @@ class SessionsController < ApplicationController
  
   private
 
+<<<<<<< HEAD
   def session_params
      params.permit(
       :token,
@@ -55,6 +65,12 @@ class SessionsController < ApplicationController
     )
   end
 
+=======
+  def token_params
+    params.require(:data).permit(:token, :uid)
+  end
+ 
+>>>>>>> development
   def auth
     request.env['omniauth.auth']
   end

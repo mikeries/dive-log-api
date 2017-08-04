@@ -27,13 +27,15 @@ class SessionsController < ApplicationController
     response = Faraday.get("https://graph.facebook.com/#{uid}?access_token=#{token}&fields=email, name ")
     authorization = JSON.parse(response.body)
 
-    user = User.find_or_create_by(uid: uid) do |u|
+    @user = User.find_or_create_by(uid: uid) do |u|
       u.name = authorization['name']
       u.email = authorization['email']
     end
 
-    jwt = Auth.encode_uid(uid)
-    render json: { jwt: jwt, user: user }
+    @jwt = Auth.encode_uid(uid)
+    render json: { jwt: @jwt, user: @user }
+
+    render :debug
   end
 
   def authenticate

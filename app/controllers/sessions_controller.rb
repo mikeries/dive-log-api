@@ -18,10 +18,10 @@ class SessionsController < ApplicationController
   end
 
   def facebook_user
-    token = params[:token]
+    token = session_params[:token]
     return unless facebook_token_valid?(token)
 
-    uid = params[:uid]
+    uid = session_params[:uid]
     response = Faraday.get("https://graph.facebook.com/#{uid}?access_token=#{token}&fields=email, name ")
     auth = JSON.parse(response.body)
 
@@ -47,7 +47,14 @@ class SessionsController < ApplicationController
   end
  
   private
- 
+
+  def session_params
+     params.permit(
+      :token,
+      :uid
+    )
+  end
+
   def auth
     request.env['omniauth.auth']
   end

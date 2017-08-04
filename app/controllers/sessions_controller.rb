@@ -19,8 +19,12 @@ class SessionsController < ApplicationController
   end
 
   def facebook_user
+
+    puts 'Starting validation.'
     tokenData = AuthToken.new(token_params)
     token = tokenData.token;
+
+    puts 'Token:' + token
     return unless facebook_token_valid?(token)
 
     puts 'valid token'

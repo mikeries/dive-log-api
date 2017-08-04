@@ -32,10 +32,8 @@ class SessionsController < ApplicationController
       u.email = authorization['email']
     end
 
-    if user
-      jwt = Auth.encode_uid(uid)
-      render json: { jwt: jwt, user: user }
-    end
+    jwt = Auth.encode_uid(uid)
+    render json: { jwt: jwt, user: user }
   end
 
   def authenticate

@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   post '/auth/facebook_user' => 'sessions#facebook_user'
 
   resources :dives, only: [:index, :create, :update, :destroy]
-  resources :locations, only: [:index]
+  resources :locations, only: [:index, :create, :update, :destroy]
 end

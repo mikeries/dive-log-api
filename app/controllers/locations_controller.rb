@@ -2,11 +2,11 @@ class LocationsController < ApplicationController
   :authenticate
 
   def index
-    render json: User.first.locations.order(:name)
+    render json: current_user.locations.order(:name)
   end
 
     def create
-    location = User.first.locations.build(location_params)
+    location = current_user.locations.build(location_params)
     if location.save
       render json: location
     else 
@@ -16,7 +16,7 @@ class LocationsController < ApplicationController
   end
 
   def update
-    location = User.first.locations.find(params[:id])
+    location = current_user.locations.find(params[:id])
 
     if location.update(location_params)
       render json: {}
@@ -26,7 +26,7 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    User.first.locations.delete(params[:id])
+    current_user.locations.delete(params[:id])
     render json: {}
   end
 
@@ -37,7 +37,7 @@ class LocationsController < ApplicationController
       :name,
       :city,
       :country,
-      :type,
+      :category,
       :description
     )
   end

@@ -5,8 +5,9 @@ class LocationsController < ApplicationController
     render json: current_user.locations.order(:name)
   end
 
-    def create
+  def create
     location = current_user.locations.build(location_params)
+
     if location.save
       render json: location
     else 
@@ -26,7 +27,7 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    current_user.locations.delete(params[:id])
+    Location.destroy(params[:id])
     render json: {}
   end
 

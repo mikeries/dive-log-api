@@ -9,10 +9,9 @@ class DivesController < ApplicationController
     dive = current_user.dives.build(dive_params)
     if dive.save
       render json: dive
-    else 
-      render json: {errors: dive.errors}, status: 422
+    else
+      render json: { errors: dive.errors }, status: 422
     end
-
   end
 
   def update
@@ -21,7 +20,7 @@ class DivesController < ApplicationController
     if dive.update(dive_params)
       render json: {}
     else
-      render json: {errors: dive.errors}, status: 422
+      render json: { errors: dive.errors }, status: 422
     end
   end
 
@@ -35,9 +34,9 @@ class DivesController < ApplicationController
   def dive_params
     params.require(:dive).permit(
       :date,
-      :time, 
-      :location_id, 
-      :duration, 
+      :time,
+      :location_id,
+      :duration,
       :ballast,
       :max_depth,
       :starting_pressure,
@@ -45,5 +44,4 @@ class DivesController < ApplicationController
       :comments
     )
   end
-
 end

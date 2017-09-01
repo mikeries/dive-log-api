@@ -15,14 +15,12 @@ class SessionsController < ApplicationController
       jwt = Auth.encode_uid(user.uid)
       redirect_to(ENV['DIVE_LOG_CLIENT_URL'] + "?token=#{jwt}")
     end
-    ## TODO: exit silently
   end
 
-## TODO: Error error checking
-  def facebook_user
+  def authenticate_facebook_user
 
     tokenData = AuthToken.new(token_params)
-    token = tokenData.token;
+    token = tokenData.token
     return unless facebook_token_valid?(token)
 
     uid = tokenData.uid
@@ -39,14 +37,8 @@ class SessionsController < ApplicationController
 
   end
 
-  def authenticate
-    redirect_to '/auth/facebook' if params[:type] == 'facebook'
-    redirect_to '/auth/github' if params[:type] == 'github'
-  end
-
   def get_current_user
      render json: current_user
-    ##render json: { errors: {name: 'Error message One', email: 'another error'} }, status: 201
   end
  
   private

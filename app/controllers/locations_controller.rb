@@ -27,7 +27,7 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    Location.destroy(params[:id])
+    current_user.locations.destroy(params[:id])
     render json: {}
   end
 

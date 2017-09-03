@@ -12,9 +12,16 @@ class SessionsController < ApplicationController
     end
 
     if user
-      jwt = Auth.encode_uid(user.uid)
+      jwt = Auth.encode_id(user.id)
       redirect_to(ENV['DIVE_LOG_CLIENT_URL'] + "?token=#{jwt}")
     end
+  end
+
+  def login_guest
+    user = User.find(1)
+    jwt = Auth.encode_id(user.id)
+
+    render json: { jwt: jwt, user: user }
   end
 
   def authenticate_facebook_user
@@ -32,7 +39,7 @@ class SessionsController < ApplicationController
       u.email = authorization['email']
     end
 
-    jwt = Auth.encode_uid(uid)
+    jwt = Auth.encode_id(id)
     render json: { jwt: jwt, user: user }
 
   end

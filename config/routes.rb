@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get '/auth/github/callback' => 'sessions#create'
 
   get '/user/current_user' => 'sessions#get_current_user'
-
+  
+  post '/auth/login_guest' => 'sessions#login_guest'  
   post '/auth/facebook_user' => 'sessions#authenticate_facebook_user'
 
   resources :dives, only: [:index, :create, :update, :destroy]

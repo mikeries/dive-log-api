@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
       u.email = authorization['email']
     end
 
-    jwt = Auth.encode_id(id)
+    jwt = Auth.encode_id(user.id)
     render json: { jwt: jwt, user: user }
 
   end
